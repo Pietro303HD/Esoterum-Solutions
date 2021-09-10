@@ -36,14 +36,14 @@ public class BinaryLed extends BinaryAcceptor {
                 if(!inputs[i])continue;
                 switch(i) {
                     case 0:
-                        Color inputColor = new Color(sLeft(), 0, 0, 1)
-                        break
+                        Color inputColor = new Color(sLeft(), 0, 0, 1);
+                        break;
                     case 1:
-                        Color inputColor = new Color(0, sBack(), 0, 1)
-                        break
+                        Color inputColor = new Color(0, sBack(), 0, 1);
+                        break;
                     case 2:
-                        Color inputColor = new Color(0, 0, sRight(), 1)
-                        break
+                        Color inputColor = new Color(0, 0, sRight(), 1);
+                        break;
                 }
                 Draw.color(inputColor);
                 Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg());
