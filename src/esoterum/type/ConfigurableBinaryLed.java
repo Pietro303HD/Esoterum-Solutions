@@ -1,5 +1,12 @@
 package esoterum.type;
 
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.math.geom.*;
+import arc.scene.ui.layout.*;
+import arc.struct.*;
+import arc.util.*;
+import arc.util.io.*;
 import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
@@ -13,6 +20,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
         rotate = true;
         emits = false;
         drawArrow = false;
+        configurable = true;
     }
 
     @Override
@@ -36,6 +44,14 @@ public class ConfigurableBinaryLed extends BinaryLed {
         }
 
         @Override
+        public void buildConfiguration(Table table){
+            table.button(Icon.pencil, () -> {
+                ui.picker.show(Tmp.c1.set(color), false, res -> configure(res.rgba()));
+                deselect();
+            }).size(40f);
+        }
+
+        @Override
         public boolean signal(){
             return false;
         }
@@ -52,9 +68,8 @@ public class ConfigurableBinaryLed extends BinaryLed {
             Draw.rect(topRegion, x, y, rotdeg());
         }
 
-        public Color getColor(){
-            int a = sBack() ? 1 : 0;
-            return new Color(1, 0, 0, a);
+        public Color getColor() {
+            return Tmp.c1.set(color);
         }
 
     }
