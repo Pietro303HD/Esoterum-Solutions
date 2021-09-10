@@ -23,5 +23,14 @@ public class Led extends BinaryBlock {
         public boolean signal(){
             return false
         }
+
+        @Override
+        public void draw(){
+            Draw.rect(region, x, y);
+            Draw.color(Color.white);
+            Draw.rect(topRegion, x, y, rotdeg());
+            Draw.rect(connectionRegion, x, y, rotdeg() );
+        }
+
     }
 }
