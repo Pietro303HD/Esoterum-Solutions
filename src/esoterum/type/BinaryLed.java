@@ -39,7 +39,7 @@ public class BinaryLed extends BinaryBlock {
         }
 
         public Color getColor(){
-            return Color.red
+            return Color.red;
         }
 
     }
