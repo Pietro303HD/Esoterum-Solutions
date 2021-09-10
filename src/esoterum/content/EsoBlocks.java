@@ -52,5 +52,7 @@ public class EsoBlocks implements ContentList {
                 return in[0] ^ in[2];
             }
         };
+
+        esoLed = new BinaryLed("binary-led");
     }
 }
