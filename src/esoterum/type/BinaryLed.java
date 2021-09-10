@@ -34,8 +34,19 @@ public class BinaryLed extends BinaryAcceptor {
             Draw.rect(region, x, y);
             for(int i = 0; i < 3; i++){
                 if(!inputs[i])continue;
-                Draw.color(Color.white, Color.green, lastSignal ? 1 : 0);
-                Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg() );
+                switch(i) {
+                    case 0:
+                        Color inputColor = new Color(sLeft(), 0, 0, 1)
+                        break
+                    case 1:
+                        Color inputColor = new Color(0, sBack(), 0, 1)
+                        break
+                    case 2:
+                        Color inputColor = new Color(0, 0, sRight(), 1)
+                        break
+                }
+                Draw.color(inputColor);
+                Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg());
             }
             Draw.color(getColor());
             Draw.rect(topRegion, x, y, rotdeg());
