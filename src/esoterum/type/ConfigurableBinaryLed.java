@@ -8,10 +8,14 @@ import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import arc.Core;
+import mindustry.gen.*;
+import mindustry.input.*;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import mindustry.graphics.*;
+
+import esoterum.content.EsoVars;
 
 public class ConfigurableBinaryLed extends BinaryLed {
     public boolean[] inputs = {false, true, false};
@@ -33,6 +37,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
     }
 
     public class ConfigurableBinaryLedBuild extends BinaryLedBuild {
+        public int color = ExoVars.color;
 
         @Override
         public void updateTile(){
