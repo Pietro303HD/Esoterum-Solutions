@@ -37,7 +37,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
     }
 
     public class ConfigurableBinaryLedBuild extends BinaryLedBuild {
-        public int color = ExoVars.color;
+        public int color = ExoVars.connectionsColor;
 
         @Override
         public void updateTile(){
