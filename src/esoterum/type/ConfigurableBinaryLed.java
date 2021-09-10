@@ -38,7 +38,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
     }
 
     public class ConfigurableBinaryLedBuild extends BinaryLedBuild {
-        public int color = EsoVars.connectionColor;
+        public int color = EsoVars.connectionColor.rgba();
 
         @Override
         public void updateTile(){
