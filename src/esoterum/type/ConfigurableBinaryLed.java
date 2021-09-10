@@ -8,12 +8,14 @@ import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import arc.Core;
-import mindustry.gen.*;
-import mindustry.input.*;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import mindustry.graphics.*;
+import mindustry.gen.*;
+import mindustry.input.*;
+import mindustry.annotations.Annotations.*;
+import mindustry.world.*;
 
 import esoterum.content.EsoVars;
 
@@ -37,7 +39,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
     }
 
     public class ConfigurableBinaryLedBuild extends BinaryLedBuild {
-        public int color = ExoVars.connectionsColor;
+        public int color = ExoVars.connectionColor;
 
         @Override
         public void updateTile(){
