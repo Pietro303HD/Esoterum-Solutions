@@ -10,6 +10,7 @@ public class BinaryLed extends BinaryAcceptor {
         super(name);
         rotate = true;
         emits = false;
+        drawArrow = false;
     }
 
     public class BinaryLedBuild extends BinaryAcceptorBuild {
