@@ -11,7 +11,7 @@ public class BinaryLed extends BinaryBlock {
         rotate = true;
     }
 
-    public class BinaryLedBuild extends BinaryBuild {
+    public class BinaryLedBuild extends BinaryAcceptorBuild {
 
         @Override
         public void updateTile(){
