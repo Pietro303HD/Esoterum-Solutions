@@ -14,8 +14,7 @@ import arc.graphics.g2d.TextureRegion;
 import mindustry.graphics.*;
 import mindustry.gen.*;
 import mindustry.input.*;
-import mindustry.annotations.Annotations.*;
-import mindustry.world.*;
+import static mindustry.Vars.*;
 
 import esoterum.content.EsoVars;
 
@@ -39,7 +38,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
     }
 
     public class ConfigurableBinaryLedBuild extends BinaryLedBuild {
-        public int color = ExoVars.connectionColor;
+        public int color = EsoVars.connectionColor;
 
         @Override
         public void updateTile(){
