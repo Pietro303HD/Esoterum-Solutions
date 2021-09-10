@@ -1,5 +1,7 @@
 package esoterum.type;
 
+import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
 import mindustry.graphics.*;
 
 public class BinaryLed extends BinaryBlock {
