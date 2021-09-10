@@ -4,11 +4,12 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import mindustry.graphics.*;
 
-public class BinaryLed extends BinaryBlock {
+public class BinaryLed extends BinaryAcceptor {
     public boolean[] inputs = {true, true, true};
     public BinaryLed(String name){
         super(name);
         rotate = true;
+        emits = false;
     }
 
     public class BinaryLedBuild extends BinaryAcceptorBuild {
