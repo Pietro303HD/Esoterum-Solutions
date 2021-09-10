@@ -34,7 +34,7 @@ public class BinaryLed extends BinaryAcceptor {
             Draw.rect(region, x, y);
             for(int i = 0; i < 3; i++){
                 if(!inputs[i])continue;
-                Color inputColor;
+                Color inputColor = new Color(1, 1, 1, 1);
                 switch(i) {
                     case 0:
                         inputColor = new Color(sLeft() ? 1 : 0, 0, 0, 1);
