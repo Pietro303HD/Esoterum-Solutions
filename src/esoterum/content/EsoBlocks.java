@@ -1,4 +1,4 @@
-package esoterum.content;
+packaged esoterum.content;
 
 import arc.Core;
 import arc.graphics.g2d.TextureRegion;
@@ -73,5 +73,9 @@ public class EsoBlocks implements ContentList {
         };
 
         esoLed = new BinaryLed("binary-led");
+
+        configurableEsoLed = new ConfigurableBinaryLed("binary-configurable-led"){
+            TextureRegion topRegion = Core.atlas.find("binary-led-top")
+        }
     }
 }
