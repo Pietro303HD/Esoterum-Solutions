@@ -5,6 +5,7 @@ import arc.graphics.g2d.Draw;
 import mindustry.graphics.*;
 
 public class BinaryLed extends BinaryBlock {
+    public boolean[] inputs = {true, true, true};
     public BinaryLed(String name){
         super(name);
         rotate = true;
