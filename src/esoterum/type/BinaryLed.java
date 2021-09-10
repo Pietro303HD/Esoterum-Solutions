@@ -42,7 +42,10 @@ public class BinaryLed extends BinaryAcceptor {
         }
 
         public Color getColor(){
-            return new Color(sBack(), sLeft(), sRight(), 1);
+            int r = sLeft() ? 1 : 0;
+            int g = sBack() ? 1 : 0;
+            int b = sRight() ? 1 : 0;
+            return new Color(r, g, b, 1);
         }
 
     }
