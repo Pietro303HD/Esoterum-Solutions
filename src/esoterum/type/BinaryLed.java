@@ -2,13 +2,13 @@ package esoterum.type;
 
 import mindustry.graphics.*;
 
-public class Led extends BinaryBlock {
-    public BinaryAcceptor(String name){
+public class BinaryLed extends BinaryBlock {
+    public BinaryLed(String name){
         super(name);
         rotate = true;
     }
 
-    public class LedBuild extends BinaryBuild {
+    public class BinaryLedBuild extends BinaryBuild {
 
         @Override
         public void updateTile(){
@@ -21,7 +21,7 @@ public class Led extends BinaryBlock {
 
         @Override
         public boolean signal(){
-            return false
+            return false;
         }
 
         @Override
