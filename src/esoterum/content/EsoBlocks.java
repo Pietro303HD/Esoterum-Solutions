@@ -1,4 +1,4 @@
-packaged esoterum.content;
+package esoterum.content;
 
 import arc.Core;
 import arc.graphics.g2d.TextureRegion;
@@ -9,7 +9,7 @@ import mindustry.world.meta.*;
 
 public class EsoBlocks implements ContentList {
     public static Block
-        esoBlock, esoButton, esoNode, esoJunction, esoRouter, esoWire, esoAnd, esoNot, esoXor, esoLed;
+        esoBlock, esoButton, esoNode, esoJunction, esoRouter, esoWire, esoAnd, esoNot, esoXor, esoLed, esoConfigurableLed;
 
     public void load(){
         esoBlock = new BinaryBlock("test-binary-block"){{
@@ -74,8 +74,9 @@ public class EsoBlocks implements ContentList {
 
         esoLed = new BinaryLed("binary-led");
 
-        configurableEsoLed = new ConfigurableBinaryLed("binary-configurable-led"){
-            TextureRegion topRegion = Core.atlas.find("binary-led-top")
-        }
+        esoConfigurableLed = new ConfigurableBinaryLed("binary-configurable-led"){
+            TextureRegion topRegion = Core.atlas.find("binary-led-top");
+        };
+
     }
 }
