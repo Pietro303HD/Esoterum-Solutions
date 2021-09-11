@@ -67,7 +67,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
         @Override
         public void draw(){
             Draw.rect(region, x, y);
-            for(int i = 0; i < 1; i++){
+            for(int i = 0; i < 3; i++){
                 if(!inputs[i])continue;
                 Draw.color(Color.white, EsoVars.connectionColor, lastSignal ? 1f : 0f);
                 Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg());
