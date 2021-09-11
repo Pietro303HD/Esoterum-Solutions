@@ -60,8 +60,8 @@ public class ConfigurableBinaryLed extends BinaryLed {
         }
 
         @Override
-        public boolean signal(){
-            return sBack();
+        public boolean signalFront() {
+            return getSignal(nb[0]);
         }
 
         @Override
