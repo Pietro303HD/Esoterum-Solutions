@@ -9,7 +9,7 @@ import mindustry.world.meta.*;
 
 public class EsoBlocks implements ContentList {
     public static Block
-        esoBlock, esoButton, esoClock, esoNode, esoJunction, esoRouter, esoWire, esoAnd, esoNot, esoXor, esoLed;
+        esoBlock, esoButton, esoClock, esoNode, esoJunction, esoRouter, esoWire, esoAnd, esoNot, esoXor, esoLed, esoConfigurableLed;
 
     public void load(){
         esoBlock = new BinaryBlock("test-binary-block"){{
@@ -77,5 +77,7 @@ public class EsoBlocks implements ContentList {
         };
 
         esoLed = new BinaryLed("binary-led");
+
+        esoConfigurableLed = new ConfigurableBinaryLed("binary-configurable-led");
     }
 }
