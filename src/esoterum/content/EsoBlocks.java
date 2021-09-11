@@ -75,7 +75,7 @@ public class EsoBlocks implements ContentList {
         esoLed = new BinaryLed("binary-led");
 
         esoConfigurableLed = new ConfigurableBinaryLed("binary-configurable-led"){
-            TextureRegion topRegion = Core.atlas.find("binary-led-top");
+            TextureRegion topRegion = Core.atlas.find("eso-binary-led-top");
         };
 
     }
