@@ -23,8 +23,8 @@ public class ConfigurableBinaryLed extends BinaryLed {
     public ConfigurableBinaryLed(String name){
         super(name);
         rotate = true;
-        emits = false;
-        drawArrow = false;
+        emits = true;
+        drawArrow = true;
         configurable = true;
 
         config(Integer.class, (ConfigurableBinaryLedBuild tile, Integer value) -> tile.color = value);
@@ -61,7 +61,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
 
         @Override
         public boolean signal(){
-            return false;
+            return sBack();
         }
 
         @Override
@@ -69,7 +69,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
             Draw.rect(region, x, y);
             for(int i = 0; i < 1; i++){
                 if(!inputs[i])continue;
-                Draw.color(Color.white);
+                Draw.color(Color.white, EsoVars.connectionColor, lastSignal ? 1f : 0f);
                 Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg());
             }
             Draw.color(getColor());
