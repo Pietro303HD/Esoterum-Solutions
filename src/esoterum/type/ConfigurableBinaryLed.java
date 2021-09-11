@@ -77,7 +77,7 @@ public class ConfigurableBinaryLed extends BinaryLed {
         }
 
         public Color getColor() {
-            return sBack ? Tmp.c1.set(color) : Color.white;
+            return sBack() ? Tmp.c1.set(color) : Color.white;
         }
 
         @Override
