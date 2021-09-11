@@ -26,6 +26,8 @@ public class ConfigurableBinaryLed extends BinaryLed {
         emits = false;
         drawArrow = false;
         configurable = true;
+
+        config(Integer.class, (ConfigurableBinaryLedBuild tile, Integer value) -> tile.color = value);
     }
 
     @Override
@@ -76,6 +78,23 @@ public class ConfigurableBinaryLed extends BinaryLed {
 
         public Color getColor() {
             return Tmp.c1.set(color);
+        }
+
+        @Override
+        public Integer config(){
+            return color;
+        }
+
+        @Override
+        public void write(Writes write){
+            super.write(write);
+            write.i(color);
+        }
+
+        @Override
+        public void read(Reads read, byte revision){
+            super.read(read, revision);
+            color = read.i();
         }
 
     }
