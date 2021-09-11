@@ -74,6 +74,9 @@ public class ConfigurableBinaryLed extends BinaryLed {
             }
             Draw.color(getColor());
             Draw.rect(topRegion, x, y, rotdeg());
+
+            Draw.color(Color.white, EsoVars.connectionColor, lastSignal ? 1f : 0f);
+            Draw.rect(connectionRegion, x, y, rotdeg() );
         }
 
         public Color getColor() {
