@@ -15,6 +15,9 @@ public class BinaryLed extends BinaryAcceptor {
         drawArrow = false;
         emits = false;
         drawConnection = false;
+        configurable = true;
+
+        config(Color, (BinaryLedBuild tile, Integer value) -> tile.color = value);
     }
 
     @Override
@@ -27,6 +30,15 @@ public class BinaryLed extends BinaryAcceptor {
     }
 
     public class BinaryLedBuild extends BinaryAcceptorBuild {
+        public Color color = Color.white;
+
+        @Override
+        public void buildConfiguration(Table table){
+            table.button(Icon.pencil, () -> {
+                ui.picker.show(Tmp.c1.set(color), false, res -> configure(res.rgba()));
+                deselect();
+            }).size(40f);
+        }
 
         @Override
         public void updateTile(){
@@ -43,8 +55,26 @@ public class BinaryLed extends BinaryAcceptor {
         @Override
         public void draw(){
             Draw.rect(region, x, y);
-            Draw.color(Tmp.c1.set(getSignal(nb[1]) ? 1f : 0f, getSignal(nb[0]) ? 1f : 0f, getSignal(nb[2]) ? 1f : 0f));
+            Draw.color(new Color(nb[0] : color.r ? 0f, nb[1] : color.g ? 0f, nb[2] : color.b ? 0f));
             Draw.rect(topRegion, x, y, rotdeg());
         }
+
+        @Override
+        public Integer config(){
+            return color;
+        }
+
+        @Override
+        public void write(Writes write){
+            super.write(write);
+            write.i(color);
+        }
+
+        @Override
+        public void read(Reads read, byte revision){
+            super.read(read, revision);
+            color = read.i();
+        }
+
     }
 }
