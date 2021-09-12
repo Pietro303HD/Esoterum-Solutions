@@ -6,6 +6,7 @@ import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.*;
 import mindustry.graphics.*;
+import esoterum.content.EsoVars;
 
 public class BinaryLed extends BinaryAcceptor {
     public boolean[] inputs = {true, true, true};
