@@ -37,7 +37,7 @@ public class BinaryLed extends BinaryAcceptor {
 
         @Override
         public boolean signalFront() {
-            return getSignal(nb[0]) | getSignal(nb[1]) | getSignal(nb[2]));
+            return getSignal(nb[0]) | getSignal(nb[1]) | getSignal(nb[2]);
         }
 
         @Override
