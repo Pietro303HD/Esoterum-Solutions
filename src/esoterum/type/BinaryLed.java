@@ -4,6 +4,7 @@ import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
+import arc.scene.ui.layout.*;
 import arc.util.*;
 import arc.util.io.*;
 import arc.struct.*;
@@ -22,7 +23,7 @@ public class BinaryLed extends BinaryAcceptor {
         drawConnection = false;
         configurable = true;
 
-        config(Color.class, (BinaryLedBuild tile, Color value) -> tile.color = value);
+        config(Integer.class, (BinaryLedBuild tile, Integer value) -> tile.color = new Color(value));
     }
 
     @Override
@@ -65,20 +66,20 @@ public class BinaryLed extends BinaryAcceptor {
         }
 
         @Override
-        public Color config(){
-            return color;
+        public Number config(){
+            return color.rgba();
         }
 
         @Override
         public void write(Writes write){
             super.write(write);
-            write.i(color);
+            write.i(color.rgba());
         }
 
         @Override
         public void read(Reads read, byte revision){
             super.read(read, revision);
-            color = read.i();
+            color = new Color(read.i());
         }
 
     }
