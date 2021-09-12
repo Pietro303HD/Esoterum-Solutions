@@ -5,8 +5,11 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.*;
+import arc.util.io.*;
+import arc.struct.*;
 import mindustry.graphics.*;
 import mindustry.gen.*;
+import mindustry.input.*;
 import static mindustry.Vars.*;
 
 public class BinaryLed extends BinaryAcceptor {
@@ -19,7 +22,7 @@ public class BinaryLed extends BinaryAcceptor {
         drawConnection = false;
         configurable = true;
 
-        config(Color, (BinaryLedBuild tile, Color value) -> tile.color = value);
+        config(Color.class, (BinaryLedBuild tile, Color value) -> tile.color = value);
     }
 
     @Override
