@@ -55,12 +55,12 @@ public class BinaryLed extends BinaryAcceptor {
         @Override
         public void draw(){
             Draw.rect(region, x, y);
-            Draw.color(new Color(nb[0] ? color.r : 0f, nb[1] ? color.g : 0f, nb[2] ? color.b : 0f));
+            Draw.color(new Color(getSignal(nb[0]) ? color.r : 0f, getSignal(nb[1]) ? color.g : 0f, getSignal(nb[2]) ? color.b : 0f));
             Draw.rect(topRegion, x, y, rotdeg());
         }
 
         @Override
-        public Integer config(){
+        public Color config(){
             return color;
         }
 
