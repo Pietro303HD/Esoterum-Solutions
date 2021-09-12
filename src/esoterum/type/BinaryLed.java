@@ -12,8 +12,8 @@ public class BinaryLed extends BinaryAcceptor {
     public BinaryLed(String name){
         super(name);
         rotate = true;
-        drawArrow = false;
-        emits = false;
+        drawArrow = true;
+        emits = true;
         drawConnection = false;
     }
 
@@ -22,7 +22,7 @@ public class BinaryLed extends BinaryAcceptor {
         return new TextureRegion[]{
             region,
             topRegion,
-            Core.atlas.find("eso-gate-connections")
+            Core.atlas.find("eso-full-connections")
         };
     }
 
@@ -36,8 +36,8 @@ public class BinaryLed extends BinaryAcceptor {
         }
 
         @Override
-        public boolean signal(){
-            return false;
+        public boolean signalFront() {
+            return getSignal(nb[0]) | getSignal(nb[1]) | getSignal(nb[2]));
         }
 
         @Override
@@ -45,6 +45,8 @@ public class BinaryLed extends BinaryAcceptor {
             Draw.rect(region, x, y);
             Draw.color(Tmp.c1.set(getSignal(nb[1]) ? 1f : 0f, getSignal(nb[0]) ? 1f : 0f, getSignal(nb[2]) ? 1f : 0f));
             Draw.rect(topRegion, x, y, rotdeg());
+            Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, signalFront() ? 1f : 0f);
+            Draw.rect(connectionRegion, x, y, rotdeg() );
         }
     }
 }
