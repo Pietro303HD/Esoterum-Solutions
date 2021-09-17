@@ -92,12 +92,14 @@ public class NoteBlock extends BinaryAcceptor {
             table.setBackground(Styles.black5);
             table.table(t -> {
                 t.button("-", () -> {
-                    note--;
-                    if(note < 0){
-                        note = 11;
-                        noteOctave--;
-                        if(noteOctave < 0)noteOctave = 4;
+                    int n = note, no = noteOctave;
+                    n--;
+                    if(n < 0){
+                        n = 11;
+                        no--;
+                        if(no < 0) no = 4;
                     }
+                    configure(IntSeq.with(volume, n, no, noteSample));
                     playSound();
                 }).size(40);
                 t.label(() -> String.format(notes[note], noteOctave + 2)).labelAlign(Align.center)
@@ -106,12 +108,14 @@ public class NoteBlock extends BinaryAcceptor {
                     .center()
                     .size(80, 40);
                 t.button("+", () -> {
-                    note++;
-                    if(note > 11){
-                        note = 0;
-                        noteOctave++;
-                        if(noteOctave > 4)noteOctave = 0;
+                    int n = note, no = noteOctave;
+                    n++;
+                    if(n > 11){
+                        n = 0;
+                        no++;
+                        if(no > 4) no = 0;
                     }
+                    configure(IntSeq.with(volume, n, no, noteSample));
                     playSound();
                 }).size(40);
             });
