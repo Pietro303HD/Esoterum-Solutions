@@ -13,7 +13,7 @@ public class BinaryButton extends BinaryBlock{
         rotate = false;
         emits = true;
         emitAllDirections = true;
-
+      
         config(Boolean.class, (BinaryButtonBuild b, Boolean on) -> {
             b.lastSignal = on;
             b.timer = duration;
@@ -31,7 +31,7 @@ public class BinaryButton extends BinaryBlock{
                 lastSignal = false;
             }
         }
-
+      
         @Override
         public boolean configTapped(){
             configure(true);
