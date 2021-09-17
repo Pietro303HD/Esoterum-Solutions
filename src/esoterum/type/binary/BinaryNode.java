@@ -5,6 +5,7 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
+import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import esoterum.content.*;
@@ -26,6 +27,13 @@ public class BinaryNode extends BinaryAcceptor{
             tile.linkPos = points[0].x;
             tile.accepting = points[0].y != 0;
             tile.linked = points[1].x != 0;
+        });
+
+        configClear((BinaryNodeBuild tile) -> {
+            tile.link = null;
+            tile.accepting = false;
+            tile.linked = false;
+            tile.linkPos = 0;
         });
     }
 
@@ -115,23 +123,24 @@ public class BinaryNode extends BinaryAcceptor{
         @Override
         public boolean onConfigureTileTapped(Building other) {
             if(other != null && linkValid(other)){
-                BinaryNodeBuild bOther = (BinaryNodeBuild) other;
+                BinaryNodeBuild node = (BinaryNodeBuild) other;
 
-                if(bOther == link){
+                if(node == link){
                     reset();
                     return true;
                 }
                 if(linked){
                     reset();
                 }
-                if(!bOther.linked){
-                    link = bOther;
-                    link.link = this;
-                    link.linked = true;
-                    link.accepting = true;
-                    linked = true;
-                    link.linkPos = Point2.unpack(pos()).sub(link.tile.x, link.tile.y).pack();
-                    linkPos = Point2.unpack(link.pos()).sub(tile.x, tile.y).pack();
+                if(!node.linked){
+                    configure(new Point2[]{
+                        new Point2(Point2.unpack(link.pos()).sub(tile.x, tile.y).pack(), accepting ? 1 : 0),
+                        new Point2(1, 0)
+                    });
+                    link.configure(new Point2[]{
+                        new Point2(Point2.unpack(pos()).sub(link.tile.x, link.tile.y).pack(), 1),
+                        new Point2(1, 0)
+                    });
                     return true;
                 }
                 return true;
@@ -151,19 +160,13 @@ public class BinaryNode extends BinaryAcceptor{
             reset();
         }
 
-        public void reset() {
-            if(link != null) {
-                try {
-                    link.link = null;
-                    link.accepting = false;
-                    link.linked = false;
-                    link.linkPos = 0;
+        public void reset(){
+            if(link != null){
+                try{
+                    link.configure(null);
                 }catch(Exception ignored){} //dafuk
             }
-            accepting = false;
-            linked = false;
-            link = null;
-            linkPos = 0;
+            configure(null);
         }
 
         @Override
