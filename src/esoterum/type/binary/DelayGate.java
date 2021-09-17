@@ -113,14 +113,14 @@ public class DelayGate extends BinaryAcceptor{
             table.setBackground(Styles.black5);
             table.table(a -> {
                 a.table(t -> {
-                    t.button("-", () -> {
-                        delaySec--;
-                        delaySec = Math.max(delaySec, 0);
-                    }).size(40);
+                    t.button("-", () -> configure(IntSeq.with(Math.max(delaySec - 1, 0), delayTick))).size(40);
                     TextField dField = t.field(delaySec + "s", s -> {
                             s = EsoUtils.extractNumber(s);
                             if(!s.isEmpty()){
-                                delaySec = Mathf.floor(Float.parseFloat(s));
+                                configure(IntSeq.with(
+                                    Mathf.floor(Float.parseFloat(s)),
+                                    delayTick
+                                ));
                             }
                         }).labelAlign(Align.center)
                         .growX()
@@ -133,13 +133,10 @@ public class DelayGate extends BinaryAcceptor{
                         if(!(stage != null && stage.getKeyboardFocus() == dField))
                             dField.setText(delaySec + "s");
                     });
-                    t.button("+", () -> {
-                        delaySec++;
-                        delaySec = Math.min(delaySec, maxSec);
-                    }).size(40);
+                    t.button("+", () -> configure(IntSeq.with(Math.min(delaySec, maxSec), delayTick))).size(40);
                 });
                 a.row();
-                Slider dSlider = a.slider(0, maxSec, 1, delaySec, newDelay -> delaySec = (int)newDelay).center().size(160, 40).get();
+                Slider dSlider = a.slider(0, maxSec, 1, delaySec, newDelay -> configure(IntSeq.with((int)newDelay, delayTick))).center().size(160, 40).get();
                 dSlider.update(() -> dSlider.setValue(delaySec));
             });
             table.row();
@@ -147,15 +144,14 @@ public class DelayGate extends BinaryAcceptor{
             table.row();
             table.table(b -> {
                 b.table(t -> {
-                    t.button("-", () -> {
-                        delayTick--;
-                        delayTick = Math.max(delayTick, 0);
-                    }).size(40);
+                    t.button("-", () -> configure(IntSeq.with(delaySec, Math.max(delayTick - 1, 0)))).size(40);
                     TextField dField = t.field(delayTick + "s", s -> {
                             s = EsoUtils.extractNumber(s);
                             if(!s.isEmpty()){
-                                delayTick = Mathf.floor(Float.parseFloat(s));
-                                delayTick = Mathf.clamp(delayTick, 0, 60);
+                                configure(IntSeq.with(delaySec, Mathf.clamp(
+                                    Mathf.floor(Float.parseFloat(s)),
+                                    0, 60
+                                )));
                             }
                         }).labelAlign(Align.center)
                         .growX()
@@ -168,17 +164,14 @@ public class DelayGate extends BinaryAcceptor{
                         if(!(stage != null && stage.getKeyboardFocus() == dField))
                             dField.setText(delayTick + "t");
                     });
-                    t.button("+", () -> {
-                        delayTick++;
-                        delayTick = Math.min(delayTick, 60);
-                    }).size(40);
+                    t.button("+", () -> configure(IntSeq.with(delaySec, Math.min(delayTick + 1, 60)))).size(40);
                 });
                 b.row();
-                Slider dSlider = b.slider(0, 60, 1, delaySec, newDelay -> delayTick = (int)newDelay).center().size(160, 40).get();
+                Slider dSlider = b.slider(0, 60, 1, delaySec, newDelay -> configure(IntSeq.with(delaySec, (int)newDelay))).center().size(160, 40).get();
                 dSlider.update(() -> dSlider.setValue(delayTick));
             });
         }
-
+        
         public int delay(){
             return delaySec * 60 + delayTick;
         }
