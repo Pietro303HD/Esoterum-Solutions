@@ -27,6 +27,7 @@ public class BinaryNode extends BinaryAcceptor{
             tile.linkPos = points[0].x;
             tile.accepting = points[0].y != 0;
             tile.linked = points[1].x != 0;
+            tile.getLink(tile.linkPos);
         });
 
         configClear((BinaryNodeBuild tile) -> {
