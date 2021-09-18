@@ -9,8 +9,8 @@ import esoterum.content.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
 
-public class SetWire extends BinaryAcceptor{
-    public SetWire(String name){
+public class ConfigWire extends BinaryAcceptor{
+    public ConfigWire(String name){
         super(name);
         configurable = true;
 

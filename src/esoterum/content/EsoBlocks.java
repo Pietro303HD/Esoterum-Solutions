@@ -59,7 +59,7 @@ public class EsoBlocks implements ContentList {
             }
         };
 
-        esoSetWire = new SetWire("binary-set-wire");
+        esoSetWire = new ConfigWire("binary-set-wire");
 
         esoJunction = new BinaryJunction("binary-junction");
 
