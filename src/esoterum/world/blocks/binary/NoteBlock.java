@@ -100,7 +100,7 @@ public class NoteBlock extends BinaryAcceptor {
                         no--;
                         if(no < 0) no = 4;
                     }
-                    configure(IntSeq.with(volume, n, no, noteSample));
+                    configure(IntSeq.with(n, volume, no, noteSample));
                     playSound();
                 }).size(40);
                 t.label(() -> String.format(notes[note], noteOctave + 2)).labelAlign(Align.center)
@@ -116,7 +116,7 @@ public class NoteBlock extends BinaryAcceptor {
                         no++;
                         if(no > 4) no = 0;
                     }
-                    configure(IntSeq.with(volume, n, no, noteSample));
+                    configure(IntSeq.with(n, volume, no, noteSample));
                     playSound();
                 }).size(40);
             });
