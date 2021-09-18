@@ -133,7 +133,7 @@ public class DelayGate extends BinaryAcceptor{
                         if(!(stage != null && stage.getKeyboardFocus() == dField))
                             dField.setText(delaySec + "s");
                     });
-                    t.button("+", () -> configure(IntSeq.with(Math.min(delaySec, maxSec), delayTick))).size(40);
+                    t.button("+", () -> configure(IntSeq.with(Math.min(delaySec + 1, maxSec), delayTick))).size(40);
                 });
                 a.row();
                 Slider dSlider = a.slider(0, maxSec, 1, delaySec, newDelay -> configure(IntSeq.with((int)newDelay, delayTick))).center().size(160, 40).get();
