@@ -13,6 +13,7 @@ public class ConfigWire extends BinaryAcceptor{
     public ConfigWire(String name){
         super(name);
         configurable = true;
+        saveConfig = true;
 
         config(byte[].class, (SetWireBuild b, byte[] i) -> {
            b.inputs = new boolean[]{

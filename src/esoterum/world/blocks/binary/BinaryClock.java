@@ -15,7 +15,6 @@ import mindustry.ui.*;
 public class BinaryClock extends BinarySwitch {
     public BinaryClock(String name){
         super(name);
-        saveConfig = true;
 
         config(Float.class, (BinaryClockBuild b, Float interval) -> {
             float i = Mathf.floor(interval);

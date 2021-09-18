@@ -8,6 +8,7 @@ public class BinarySwitch extends BinaryBlock {
     public BinarySwitch(String name){
         super(name);
         configurable = true;
+        saveConfig = true;
         autoResetEnabled = false;
         emits = true;
         emitAllDirections = true;
