@@ -22,6 +22,7 @@ public class TimedBufferGate extends BinaryAcceptor{
     public TimedBufferGate(String name){
         super(name);
         configurable = true;
+        saveConfig = true;
 
         config(Float.class, (DelayGateBuild b, Float delay) -> {
             float d = Mathf.floor(delay);

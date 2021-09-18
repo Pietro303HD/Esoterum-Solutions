@@ -16,6 +16,7 @@ public class NoteBlock extends BinaryAcceptor {
     public NoteBlock(String name){
         super(name);
         configurable = true;
+        saveConfig = true;
 
         config(IntSeq.class, (NoteBlockBuild tile, IntSeq ints) -> {
             tile.note = ints.get(0);
