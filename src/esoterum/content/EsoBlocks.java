@@ -18,8 +18,8 @@ public class EsoBlocks implements ContentList {
         esoBlock, esoWire, esoSetWire, esoJunction, esoNode, esoRouter,
         esoSwitch, esoButton, esoClock,
         esoAnd, esoAndB, esoAndC, esoXor, esoNot,
-        esoBuffer, esoDelayGate, esoWaitGate,
-        esoLatch, esoMonostable, esoPulseExtender,
+        esoBuffer, esoTimedBufer, esoDelayGate, esoPulseExtender,
+        esoLatch, esoMonostable,
         esoLed, esoNoteBlock;
 
     public void load(){
@@ -179,15 +179,15 @@ public class EsoBlocks implements ContentList {
             }
         };
 
-        esoDelayGate = new TimedBufferGate("binary-delay-gate");
+        esoTimedBufer = new TimedBufferGate("binary-delay-gate");
 
-        esoWaitGate = new DelayGate("binary-wait-gate");
+        esoDelayGate = new DelayGate("binary-wait-gate");
+
+        esoPulseExtender = new PulseExtender("binary-pulse-extender");
 
         esoLatch = new BinaryLatch("binary-latch");
 
         esoMonostable = new BinaryMonostable("binary-monostable");
-
-        esoPulseExtender = new PulseExtender("binary-pulse-extender");
 
         esoLed = new BinaryLed("binary-led");
 
