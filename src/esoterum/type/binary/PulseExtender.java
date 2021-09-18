@@ -3,7 +3,7 @@ package esoterum.type.binary;
 import arc.*;
 import arc.util.*;
 
-public class PulseExtender extends DelayGate{
+public class PulseExtender extends TimedBufferGate{
     public PulseExtender(String name){
         super(name);
     }

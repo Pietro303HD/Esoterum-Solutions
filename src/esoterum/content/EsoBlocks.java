@@ -179,9 +179,9 @@ public class EsoBlocks implements ContentList {
             }
         };
 
-        esoDelayGate = new DelayGate("binary-delay-gate");
+        esoDelayGate = new TimedBufferGate("binary-delay-gate");
 
-        esoWaitGate = new WaitGate("binary-wait-gate");
+        esoWaitGate = new DelayGate("binary-wait-gate");
 
         esoLatch = new BinaryLatch("binary-latch");
 

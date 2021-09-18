@@ -5,7 +5,7 @@ import arc.graphics.g2d.*;
 import arc.util.*;
 import esoterum.content.*;
 
-public class BinaryMonostable extends DelayGate{
+public class BinaryMonostable extends TimedBufferGate{
     public TextureRegion sig, bar;
 
     public BinaryMonostable(String name){
