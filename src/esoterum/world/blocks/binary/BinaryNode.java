@@ -1,11 +1,10 @@
-package esoterum.type.binary;
+package esoterum.world.blocks.binary;
 
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
-import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import esoterum.content.*;
