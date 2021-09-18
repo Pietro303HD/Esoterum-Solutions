@@ -17,9 +17,11 @@ public class EsoBlocks implements ContentList {
         // binary
         esoBlock, esoWire, esoSetWire, esoJunction, esoNode, esoRouter,
         esoSwitch, esoButton, esoClock,
-        esoAnd, esoAndB, esoAndC, esoXor, esoNot,
+        esoAnd, esoAndB, esoAndC,
+        esoXor, esoXorB, esoXorC,
+        esoNot,
         esoBuffer, esoTimedBufer, esoDelayGate, esoPulseExtender,
-        esoLatch, esoMonostable,
+        esoLatch, esoMonostable, esoBarrier,
         esoLed, esoNoteBlock;
 
     public void load(){
@@ -85,17 +87,8 @@ public class EsoBlocks implements ContentList {
         esoAndB = new BinaryGate("binary-AND-B"){
             {
                 variant = "B";
+                connections = "eso-gate-connections1";
                 inputs = new boolean[]{false, true, true};
-            }
-
-            @Override
-            protected TextureRegion[] icons() {
-                return new TextureRegion[]{
-                    region,
-                    topRegion,
-                    Core.atlas.find("eso-gate-connections1"),
-                    variantRegion
-                };
             }
 
             @Override
@@ -107,17 +100,8 @@ public class EsoBlocks implements ContentList {
         esoAndC = new BinaryGate("binary-AND-C"){
             {
                 variant = "C";
+                connections = "eso-gate-connections2";
                 inputs = new boolean[]{true, true, false};
-            }
-
-            @Override
-            protected TextureRegion[] icons() {
-                return new TextureRegion[]{
-                    region,
-                    topRegion,
-                    Core.atlas.find("eso-gate-connections2"),
-                    variantRegion
-                };
             }
 
             @Override
@@ -128,7 +112,7 @@ public class EsoBlocks implements ContentList {
 
         esoXor = new BinaryGate("binary-XOR"){
             {
-                drawSides = false;
+                variant = "A";
             }
 
             @Override
@@ -137,9 +121,47 @@ public class EsoBlocks implements ContentList {
             }
         };
 
+        esoXorB = new BinaryGate("binary-XOR-B"){
+            {
+                variant = "B";
+                connections = "eso-gate-connections1";
+                inputs = new boolean[]{false, true, true};
+            }
+
+            @Override
+            public void load(){
+                super.load();
+                topRegion = Core.atlas.find("eso-binary-XOR-top");
+            }
+
+            @Override
+            public boolean operation(boolean[] in){
+                return in[1] ^ in[2];
+            }
+        };
+
+        esoXorC = new BinaryGate("binary-XOR-C"){
+            {
+                variant = "C";
+                connections = "eso-gate-connections2";
+                inputs = new boolean[]{true, true, false};
+            }
+
+            @Override
+            public void load(){
+                super.load();
+                topRegion = Core.atlas.find("eso-binary-XOR-top");
+            }
+
+            @Override
+            public boolean operation(boolean[] in){
+                return in[0] ^ in[1];
+            }
+        };
+
         esoNot = new BinaryGate("binary-NOT"){
             {
-                drawSides = false;
+                connections = "eso-not-connections";
                 inputs = new boolean[]{false, true, false};
             }
 
@@ -147,35 +169,17 @@ public class EsoBlocks implements ContentList {
             public boolean operation(boolean[] in){
                 return !in[1];
             }
-
-            @Override
-            protected TextureRegion[] icons() {
-                return new TextureRegion[]{
-                    region,
-                    topRegion,
-                    Core.atlas.find("eso-not-connections")
-                };
-            }
         };
 
         esoBuffer = new BinaryGate("binary-buffer"){
             {
-                drawSides = false;
+                connections = "eso-not-connections";
                 inputs = new boolean[]{false, true, false};
             }
 
             @Override
             public boolean operation(boolean[] in){
                 return in[1];
-            }
-
-            @Override
-            protected TextureRegion[] icons() {
-                return new TextureRegion[]{
-                    region,
-                    topRegion,
-                    Core.atlas.find("eso-not-connections")
-                };
             }
         };
 
@@ -188,6 +192,28 @@ public class EsoBlocks implements ContentList {
         esoLatch = new BinaryLatch("binary-latch");
 
         esoMonostable = new BinaryMonostable("binary-monostable");
+
+        esoBarrier = new BinaryGate("binary-barrier"){
+            {
+                inputs = new boolean[]{true, true, true};
+            }
+
+            @Override
+            public boolean operation(boolean[] in){
+                return in[1] && !(in[0] || in[2]);
+            }
+
+            @Override
+            protected TextureRegion[] icons(){
+                return new TextureRegion[]{
+                    region,
+                    topRegion,
+                    Core.atlas.find("eso-full-connections"),
+                    sideRegions[0],
+                    sideRegions[2]
+                };
+            }
+        };
 
         esoLed = new BinaryLed("binary-led");
 

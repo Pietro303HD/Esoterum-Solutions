@@ -8,9 +8,9 @@ public class BinaryGate extends BinaryAcceptor {
     /** left, back, right */
     public boolean[] inputs = {true, false, true};
     public String variant = null;
-    public boolean drawSides = true;
     public TextureRegion variantRegion;
-    public TextureRegion[] sides = new TextureRegion[3];
+    public TextureRegion[] sideRegions = new TextureRegion[3];
+    public String connections = "eso-gate-connections";
 
     public BinaryGate(String name){
         super(name);
@@ -27,8 +27,11 @@ public class BinaryGate extends BinaryAcceptor {
         return new TextureRegion[]{
             region,
             topRegion,
-            Core.atlas.find("eso-gate-connections"),
-            variant != null ? variantRegion : Core.atlas.find("clear")
+            Core.atlas.find(connections),
+            variant != null ? variantRegion : Core.atlas.find("clear"),
+            sideRegions[0],
+            sideRegions[1],
+            sideRegions[2]
         };
     }
 
@@ -36,8 +39,8 @@ public class BinaryGate extends BinaryAcceptor {
     public void load() {
         super.load();
         variantRegion = Core.atlas.find("eso-variant-" + variant);
-        for(int i = 0; i < 2; i++){
-            sides[i] = Core.atlas.find(name + "-side" + i);
+        for(int i = 0; i < 3; i++){
+            sideRegions[i] = Core.atlas.find(name + "-side" + i, "clear");
         }
     }
 
@@ -70,22 +73,13 @@ public class BinaryGate extends BinaryAcceptor {
         public void draw(){
             Draw.rect(region, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
-            for(int i = 0; i < 3; i++){
-                if(!inputs[i])continue;
-                Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg());
-            }
             Draw.rect(topRegion, x, y, rotdeg());
-            if(drawSides){
-                int j = 0;
-                for(int i = 0; i < 3; i++){
-                    if(!inputs[i]) continue;
-                    Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, results[i] ? 1f : 0f);
-                    Draw.rect(sides[j], x, y, rotdeg());
-                    j++;
-                }
+            for(int i = 0; i < 3; i++){
+                if(!inputs[i]) continue;
+                Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, results[i] ? 1f : 0f);
+                Draw.rect(sideRegions[i], x, y, rotdeg());
             }
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
-            Draw.rect(connectionRegion, x, y, rotdeg() );
         }
 
         @Override
