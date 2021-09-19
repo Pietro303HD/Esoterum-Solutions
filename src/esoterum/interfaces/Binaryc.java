@@ -1,5 +1,6 @@
 package esoterum.interfaces;
 
+import arc.math.*;
 import esoterum.world.blocks.binary.*;
 import mindustry.gen.*;
 
@@ -15,7 +16,7 @@ public interface Binaryc{
             return from.lastSignal;
         }
         // relativeTo() does not account for block rotation, so subtract it with the rotation.
-        int rot = (from.relativeTo(to) - from.rotation) % 4;
+        int rot = Mathf.mod(from.relativeTo(to) - from.rotation, 4);
         return switch(rot){
             case 0 -> from.signalFront();
             case 1 -> from.signalLeft();
