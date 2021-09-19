@@ -1,9 +1,7 @@
 package esoterum.world.blocks.binary;
 
 import arc.graphics.g2d.*;
-import arc.math.*;
 import arc.util.*;
-import arc.util.io.*;
 import esoterum.content.*;
 
 public class DelayGate extends TimedBufferGate{

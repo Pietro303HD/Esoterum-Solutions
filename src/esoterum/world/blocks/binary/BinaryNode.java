@@ -26,7 +26,6 @@ public class BinaryNode extends BinaryAcceptor{
             tile.linkPos = points[0].x;
             tile.accepting = points[0].y != 0;
             tile.linked = points[1].x != 0;
-            tile.getLink(tile.linkPos);
         });
 
         configClear((BinaryNodeBuild tile) -> {
@@ -49,7 +48,7 @@ public class BinaryNode extends BinaryAcceptor{
         Drawf.dashCircle(x * 8f, y * 8f, range, Color.white);
     }
 
-    public class BinaryNodeBuild extends BinaryAcceptorBuild {
+    public class BinaryNodeBuild extends BinaryAcceptorBuild{
         public BinaryNodeBuild link = null;
         public boolean linked = false;
         public boolean accepting = false;
@@ -60,7 +59,7 @@ public class BinaryNode extends BinaryAcceptor{
             getLink(linkPos);
             linked = link != null;
             lastSignal = nextSignal;
-            if(accepting && link != null) {
+            if(accepting && link != null){
                 nextSignal = link.signal();
             }else{
                 nextSignal = signal();
@@ -87,13 +86,13 @@ public class BinaryNode extends BinaryAcceptor{
         }
 
         @Override
-        public void draw() {
+        public void draw(){
             super.draw();
 
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
             Draw.rect(connectionRegion, x, y);
 
-            if(link != null && accepting) {
+            if(link != null && accepting){
                 Draw.z(Layer.power);
                 Lines.stroke(1f);
                 Lines.line(x, y, link.x, link.y);
@@ -110,7 +109,7 @@ public class BinaryNode extends BinaryAcceptor{
         }
 
         @Override
-        public void drawConfigure() {
+        public void drawConfigure(){
             Draw.color(Color.white);
             Draw.z(Layer.overlayUI);
             Lines.stroke(1f);
@@ -121,7 +120,7 @@ public class BinaryNode extends BinaryAcceptor{
         }
 
         @Override
-        public boolean onConfigureTileTapped(Building other) {
+        public boolean onConfigureTileTapped(Building other){
             if(other != null && linkValid(other)){
                 BinaryNodeBuild node = (BinaryNodeBuild) other;
 
@@ -134,11 +133,11 @@ public class BinaryNode extends BinaryAcceptor{
                 }
                 if(!node.linked){
                     configure(new Point2[]{
-                        new Point2(Point2.unpack(link.pos()).sub(tile.x, tile.y).pack(), accepting ? 1 : 0),
+                        new Point2(Point2.unpack(node.pos()).sub(tile.x, tile.y).pack(), accepting ? 1 : 0),
                         new Point2(1, 0)
                     });
-                    link.configure(new Point2[]{
-                        new Point2(Point2.unpack(pos()).sub(link.tile.x, link.tile.y).pack(), 1),
+                    node.configure(new Point2[]{
+                        new Point2(Point2.unpack(pos()).sub(node.tile.x, node.tile.y).pack(), 1),
                         new Point2(1, 0)
                     });
                     return true;
@@ -156,7 +155,7 @@ public class BinaryNode extends BinaryAcceptor{
         }
 
         @Override
-        public void onRemoved() {
+        public void onRemoved(){
             reset();
         }
 
@@ -170,7 +169,7 @@ public class BinaryNode extends BinaryAcceptor{
         }
 
         @Override
-        public Object config() {
+        public Object config(){
             return new Point2[]{new Point2(linkPos, accepting ? 1 : 0), new Point2(linked ? 1 : 0, 0)};
         }
 
@@ -203,7 +202,7 @@ public class BinaryNode extends BinaryAcceptor{
         }
 
         @Override
-        public void writeAll(Writes write) {
+        public void writeAll(Writes write){
             super.writeAll(write);
 
             write.bool(nextSignal);
