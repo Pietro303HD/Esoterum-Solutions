@@ -4,11 +4,15 @@ import arc.*;
 import arc.audio.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.scene.*;
+import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import esoterum.content.*;
+import esoterum.util.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 
@@ -69,7 +73,7 @@ public class NoteBlock extends BinaryAcceptor {
         }
 
         public void playSound(){
-            noteSamples[noteSample][noteOctave].play((float) volume / 10f, 1f + note / 12f, 0);
+            noteSamples[noteSample][noteOctave].play((float)volume / 10f, 1f + note / 12f, 0);
         }
 
         @Override
@@ -91,34 +95,65 @@ public class NoteBlock extends BinaryAcceptor {
         @Override
         public void buildConfiguration(Table table) {
             table.setBackground(Styles.black5);
-            table.table(t -> {
-                t.button("-", () -> {
-                    int n = note, no = noteOctave;
-                    n--;
-                    if(n < 0){
-                        n = 11;
-                        no--;
-                        if(no < 0) no = 4;
-                    }
-                    configure(IntSeq.with(n, volume, no, noteSample));
-                    playSound();
-                }).size(40);
-                t.label(() -> String.format(notes[note], noteOctave + 2)).labelAlign(Align.center)
-                    .growX()
-                    .fillX()
-                    .center()
-                    .size(80, 40);
-                t.button("+", () -> {
-                    int n = note, no = noteOctave;
-                    n++;
-                    if(n > 11){
-                        n = 0;
-                        no++;
-                        if(no > 4) no = 0;
-                    }
-                    configure(IntSeq.with(n, volume, no, noteSample));
-                    playSound();
-                }).size(40);
+            table.table(s -> {
+                s.add("Note:").left();
+                s.table(t -> {
+                    t.button("-", () -> {
+                        int n = note, no = noteOctave;
+                        n--;
+                        if(n < 0){
+                            n = 11;
+                            no--;
+                            if(no < 0) no = 4;
+                        }
+                        configure(IntSeq.with(n, volume, no, noteSample));
+                        playSound();
+                    }).size(40);
+                    t.label(() -> String.format(notes[note], noteOctave + 2)).labelAlign(Align.center)
+                        .growX()
+                        .fillX()
+                        .center()
+                        .size(80, 40);
+                    t.button("+", () -> {
+                        int n = note, no = noteOctave;
+                        n++;
+                        if(n > 11){
+                            n = 0;
+                            no++;
+                            if(no > 4) no = 0;
+                        }
+                        configure(IntSeq.with(n, volume, no, noteSample));
+                        playSound();
+                    }).size(40);
+                }).right();
+                s.row();
+                s.add("Volume:").left();
+                s.table(t -> {
+                    t.button("-", () -> {
+                        configure(IntSeq.with(note, (int)Mathf.maxZero(volume - 1), noteOctave, noteSample));
+                        playSound();
+                    }).size(40);
+                    TextField bField = t.field(String.valueOf((float)volume / 10), v -> {
+                            v = EsoUtils.extractNumber(v);
+                            if(!v.isEmpty()){
+                                configure(IntSeq.with(note, (int)(Float.parseFloat(v) * 10), noteOctave, noteSample));
+                            }
+                        }).labelAlign(Align.center)
+                        .growX()
+                        .fillX()
+                        .center()
+                        .size(80, 40)
+                        .get();
+                    bField.update(() -> {
+                        Scene stage = bField.getScene();
+                        if(!(stage != null && stage.getKeyboardFocus() == bField))
+                            bField.setText(String.valueOf((float)volume / 10));
+                    });
+                    t.button("+", () -> {
+                        configure(IntSeq.with(note, volume + 1, noteOctave, noteSample));
+                        playSound();
+                    }).size(40);
+                }).right();
             });
             table.row();
             table.button("Play", this::playSound).growX();
