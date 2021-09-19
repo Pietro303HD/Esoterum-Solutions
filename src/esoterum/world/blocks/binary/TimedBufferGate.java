@@ -17,7 +17,7 @@ import mindustry.ui.*;
 public class TimedBufferGate extends BinaryAcceptor{
     public int maxSec = 60;
 
-    public TextureRegion clock;
+    public TextureRegion timerRegion;
 
     public TimedBufferGate(String name){
         super(name);
@@ -41,7 +41,7 @@ public class TimedBufferGate extends BinaryAcceptor{
         super.load();
 
         connectionRegion = Core.atlas.find("eso-not-connections");
-        clock = Core.atlas.find(name + "-clock");
+        timerRegion = Core.atlas.find(name + "-clock");
     }
 
     @Override
@@ -49,7 +49,8 @@ public class TimedBufferGate extends BinaryAcceptor{
         return new TextureRegion[]{
             region,
             topRegion,
-            connectionRegion
+            connectionRegion,
+            timerRegion
         };
     }
 
@@ -76,7 +77,7 @@ public class TimedBufferGate extends BinaryAcceptor{
             Draw.rect(connectionRegion, x, y, rotdeg());
             Draw.rect(topRegion, x, y, rotdeg());
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, signal() ? 1f : 0f);
-            Draw.rect(clock, x, y, rotdeg());
+            Draw.rect(timerRegion, x, y, rotdeg());
         }
 
         @Override

@@ -27,7 +27,7 @@ public class DelayGate extends TimedBufferGate{
             Draw.rect(connectionRegion, x, y, rotdeg());
             Draw.rect(topRegion, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, nextSignal ? 1f : 0f);
-            Draw.rect(clock, x, y);
+            Draw.rect(timerRegion, x, y);
         }
     }
 }

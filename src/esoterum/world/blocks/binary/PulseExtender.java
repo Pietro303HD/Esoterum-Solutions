@@ -12,7 +12,7 @@ public class PulseExtender extends TimedBufferGate{
     public void load(){
         super.load();
 
-        clock = Core.atlas.find("clear");
+        timerRegion = Core.atlas.find("clear");
     }
 
     public class PulseExtenderBuild extends DelayGateBuild{
