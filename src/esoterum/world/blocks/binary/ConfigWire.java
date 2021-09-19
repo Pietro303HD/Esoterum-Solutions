@@ -17,16 +17,16 @@ public class ConfigWire extends BinaryAcceptor{
         configurable = true;
         saveConfig = true;
 
-        config(byte[].class, (SetWireBuild b, byte[] i) -> {
-           b.inputs = new boolean[]{
+        config(byte[].class, (ConfigWireBuild b, byte[] i) -> {
+           b.sides = new boolean[]{
                i[0] == 1,
                i[1] == 1,
                i[2] == 1
            };
         });
 
-        config(Integer.class, (SetWireBuild b, Integer i) -> {
-            b.inputs[i] = !b.inputs[i];
+        config(Integer.class, (ConfigWireBuild b, Integer i) -> {
+            b.sides[i] = !b.sides[i];
         });
     }
 
@@ -37,7 +37,7 @@ public class ConfigWire extends BinaryAcceptor{
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
             region,
             topRegion,
@@ -45,9 +45,8 @@ public class ConfigWire extends BinaryAcceptor{
         };
     }
 
-    public class SetWireBuild extends BinaryAcceptorBuild{
-        public boolean[] inputs = new boolean[]{false, true, false};
-        public int mode;
+    public class ConfigWireBuild extends BinaryAcceptorBuild{
+        public boolean[] sides = new boolean[]{false, true, false};
 
         @Override
         public void updateTile(){
@@ -58,9 +57,9 @@ public class ConfigWire extends BinaryAcceptor{
         @Override
         public boolean signal(){
             boolean
-                left = inputs[0] && getSignal(nb[1]),
-                back = inputs[1] && getSignal(nb[0]),
-                right = inputs[2] && getSignal(nb[2]);
+                left = sides[0] && getSignal(nb[1]),
+                back = sides[1] && getSignal(nb[0]),
+                right = sides[2] && getSignal(nb[2]);
             return left || back || right;
         }
 
@@ -74,7 +73,7 @@ public class ConfigWire extends BinaryAcceptor{
             Draw.rect(region, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
             for(int i = 0; i < 3; i++){
-                if(!inputs[i])continue;
+                if(!sides[i])continue;
                 Draw.rect(connectionRegion, x, y, (90f + 90f * i) + rotdeg());
             }
             Draw.rect(connectionRegion, x, y, rotdeg());
@@ -89,31 +88,17 @@ public class ConfigWire extends BinaryAcceptor{
                 int ii = i;
                 TextButton button = table.button(letters[i], () -> configure(ii)).size(40).get();
                 button.getStyle().checked = Tex.buttonOver;
-                button.update(() -> button.setChecked(inputs[ii]));
+                button.update(() -> button.setChecked(sides[ii]));
             }
         }
 
         @Override
         public byte[] config(){
             return new byte[]{
-                (byte)(inputs[0] ? 1 : 0),
-                (byte)(inputs[1] ? 1 : 0),
-                (byte)(inputs[2] ? 1 : 0)
+                (byte)(sides[0] ? 1 : 0),
+                (byte)(sides[1] ? 1 : 0),
+                (byte)(sides[2] ? 1 : 0)
             };
-        }
-
-        @Override
-        public void write(Writes write){
-            super.write(write);
-
-            write.i(mode);
-        }
-
-        @Override
-        public void read(Reads read, byte revision){
-            super.read(read, revision);
-
-            mode = read.i();
         }
     }
 }

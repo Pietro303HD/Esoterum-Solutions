@@ -14,14 +14,14 @@ public class BinaryRouter extends BinaryAcceptor{
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
         connectionRegion = Core.atlas.find("eso-full-connections");
     }
 
-    public class BinaryRouterBuild extends BinaryAcceptorBuild {
+    public class BinaryRouterBuild extends BinaryAcceptorBuild{
         @Override
-        public void draw() {
+        public void draw(){
             Draw.rect(region, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
             Draw.rect(connectionRegion, x, y);
@@ -29,7 +29,7 @@ public class BinaryRouter extends BinaryAcceptor{
         }
 
         @Override
-        public boolean signal() {
+        public boolean signal(){
             return getSignal(nb[0]) | getSignal(nb[1]) | getSignal(nb[2]) | getSignal(nb[3]);
         }
 

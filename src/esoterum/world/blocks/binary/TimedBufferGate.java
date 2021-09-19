@@ -178,12 +178,12 @@ public class TimedBufferGate extends BinaryAcceptor{
         }
 
         @Override
-        public Object config() {
+        public Object config(){
             return IntSeq.with(delaySec, delayTick);
         }
 
         @Override
-        public void write(Writes write) {
+        public void write(Writes write){
             super.write(write);
 
             write.f(delayTimer);
@@ -192,7 +192,7 @@ public class TimedBufferGate extends BinaryAcceptor{
         }
 
         @Override
-        public void read(Reads read, byte revision) {
+        public void read(Reads read, byte revision){
             super.read(read, revision);
 
             if(revision == 1){
@@ -211,7 +211,7 @@ public class TimedBufferGate extends BinaryAcceptor{
         }
 
         @Override
-        public byte version() {
+        public byte version(){
             return 2;
         }
     }

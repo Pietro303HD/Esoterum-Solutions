@@ -68,11 +68,13 @@ public class BinaryBlock extends Block{
         public void draw(){
             Draw.rect(region, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
-            if(drawConnection) for (BinaryBuild b : nb){
-                if(b == null || b.team != team) continue;
-                if(!b.block.rotate || (b.front() == this || b.back() == this) || front() == b){
-                    if(!(b.back() == this && front() != b) || !b.block.rotate){
-                        Draw.rect(connectionRegion, x, y, relativeTo(b) * 90);
+            if(drawConnection){
+                for(BinaryBuild b: nb){
+                    if(b == null || b.team != team) continue;
+                    if(!b.block.rotate || (b.front() == this || b.back() == this) || front() == b){
+                        if(!(b.back() == this && front() != b) || !b.block.rotate){
+                            Draw.rect(connectionRegion, x, y, relativeTo(b) * 90);
+                        }
                     }
                 }
             }

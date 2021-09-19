@@ -15,7 +15,8 @@ public class EsoBlocks implements ContentList{
         esoPanelFlat, esoPanelOpen, esoPanelE, esoPanelS, esoPanelO,
 
         // binary
-        esoBlock, esoWire, esoSetWire, esoJunction, esoNode, esoRouter,
+        esoBlock, esoWire, esoConfigWire, esoConfigOutputWire,
+        esoJunction, esoNode, esoRouter,
         esoSwitch, esoButton, esoClock,
         esoAnd, esoAndB, esoAndC,
         esoXor, esoXorB, esoXorC,
@@ -61,7 +62,9 @@ public class EsoBlocks implements ContentList{
             }
         };
 
-        esoSetWire = new ConfigWire("binary-set-wire");
+        esoConfigWire = new ConfigWire("binary-set-wire");
+
+        esoConfigOutputWire = new ConfigOutputWire("binary-output-wire");
 
         esoJunction = new BinaryJunction("binary-junction");
 
