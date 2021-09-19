@@ -61,12 +61,9 @@ public class NoteBlock extends BinaryAcceptor{
                 "A%o", "A%o#", "B%o"
         };
 
-        // i don't know
-        public boolean prev;
-
         @Override
         public void updateTile(){
-            prev = lastSignal;
+            boolean prev = lastSignal;
             lastSignal = nextSignal | getSignal(nb[0]);
             nextSignal = signal();
             if(lastSignal & prev != lastSignal) playSound();
