@@ -41,7 +41,7 @@ public class TimedBufferGate extends BinaryAcceptor{
         super.load();
 
         connectionRegion = Core.atlas.find("eso-not-connections");
-        timerRegion = Core.atlas.find(name + "-clock");
+        timerRegion = Core.atlas.find(name + "-timer");
     }
 
     @Override
@@ -76,7 +76,7 @@ public class TimedBufferGate extends BinaryAcceptor{
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
             Draw.rect(connectionRegion, x, y, rotdeg());
             Draw.rect(topRegion, x, y, rotdeg());
-            Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, signal() ? 1f : 0f);
+            Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, nextSignal ? 1f : 0f);
             Draw.rect(timerRegion, x, y, rotdeg());
         }
 
