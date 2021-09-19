@@ -10,8 +10,8 @@ import mindustry.gen.*;
 
 import static mindustry.Vars.*;
 
-public class BinaryLed extends BinaryAcceptor {
-    public boolean[] inputs = {true, true, true};
+public class BinaryLed extends BinaryAcceptor{
+    public boolean[] inputs ={true, true, true};
     public BinaryLed(String name){
         super(name);
         rotate = true;
@@ -24,7 +24,7 @@ public class BinaryLed extends BinaryAcceptor {
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
             region,
             topRegion,
@@ -32,7 +32,7 @@ public class BinaryLed extends BinaryAcceptor {
         };
     }
 
-    public class BinaryLedBuild extends BinaryAcceptorBuild {
+    public class BinaryLedBuild extends BinaryAcceptorBuild{
         public Color color = Color.white;
 
         @Override
@@ -63,7 +63,7 @@ public class BinaryLed extends BinaryAcceptor {
         }
 
         @Override
-        public boolean signalFront() {
+        public boolean signalFront(){
             return nb[0] != null && nb[0].lastSignal;
         }
 

@@ -13,7 +13,7 @@ import mindustry.ui.dialogs.SettingsMenuDialog.*;
 
 import static mindustry.Vars.*;
 
-public class EsoSettings {
+public class EsoSettings{
     private static final ColorPicker colorPicker = new ColorPicker();
     public SettingsTable eso;
 

@@ -8,7 +8,7 @@ import mindustry.ctype.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
-public class EsoBlocks implements ContentList {
+public class EsoBlocks implements ContentList{
     public static Block
         // environment
         esoPanel, esoPanel1, esoPanel2, esoPanel3,
@@ -52,7 +52,7 @@ public class EsoBlocks implements ContentList {
             }
 
             @Override
-            protected TextureRegion[] icons() {
+            protected TextureRegion[] icons(){
                 return new TextureRegion[]{
                     region,
                     topRegion,
@@ -92,7 +92,7 @@ public class EsoBlocks implements ContentList {
             }
 
             @Override
-            public boolean operation(boolean[] in) {
+            public boolean operation(boolean[] in){
                 return in[1] && in[2];
             }
         };
@@ -105,7 +105,7 @@ public class EsoBlocks implements ContentList {
             }
 
             @Override
-            public boolean operation(boolean[] in) {
+            public boolean operation(boolean[] in){
                 return in[1] && in[0];
             }
         };

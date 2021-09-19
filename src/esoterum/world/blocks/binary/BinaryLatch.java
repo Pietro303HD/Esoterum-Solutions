@@ -14,14 +14,14 @@ public class BinaryLatch extends BinaryGate{
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
         latchRegion = Core.atlas.find(name + "-latch");
         connectionRegion = Core.atlas.find("eso-gate-connections");
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
                 region,
                 topRegion,
@@ -34,19 +34,19 @@ public class BinaryLatch extends BinaryGate{
         public boolean store = false;
 
         @Override
-        public void updateTile() {
+        public void updateTile(){
             lastSignal = getSignal(nb[1]) | getSignal(nb[2]);
             store = signal();
         }
 
         @Override
-        public boolean signal() {
+        public boolean signal(){
             if(getSignal(nb[1]))return getSignal(nb[2]);
             return store;
         }
 
         @Override
-        public boolean signalFront() {
+        public boolean signalFront(){
             return store;
         }
 
@@ -78,7 +78,7 @@ public class BinaryLatch extends BinaryGate{
         }
 
         @Override
-        public double sense(LAccess sensor) {
+        public double sense(LAccess sensor){
             if(sensor == LAccess.enabled) return store ? 1 : 0;
             return super.sense(sensor);
         }

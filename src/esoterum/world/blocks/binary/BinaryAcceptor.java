@@ -2,7 +2,7 @@ package esoterum.world.blocks.binary;
 
 import mindustry.graphics.*;
 
-public class BinaryAcceptor extends BinaryBlock {
+public class BinaryAcceptor extends BinaryBlock{
     public BinaryAcceptor(String name){
         super(name);
         rotate = true;
@@ -10,7 +10,7 @@ public class BinaryAcceptor extends BinaryBlock {
         emits = true;
     }
 
-    public class BinaryAcceptorBuild extends BinaryBuild {
+    public class BinaryAcceptorBuild extends BinaryBuild{
 
         @Override
         public void updateTile(){
@@ -19,7 +19,7 @@ public class BinaryAcceptor extends BinaryBlock {
         }
 
         @Override
-        public void drawSelect() {
+        public void drawSelect(){
             if(rotate && nb[3] != null)Drawf.arrow(x, y, nb[3].x, nb[3].y, 2f, 2f, Pal.accent);
         }
 
@@ -29,7 +29,7 @@ public class BinaryAcceptor extends BinaryBlock {
         }
 
         @Override
-        public boolean signalFront() {
+        public boolean signalFront(){
             return (nb[0] != null ? nb[0].rotation == rotation || !nb[0].block.rotate ? getSignal(nb[0]) : lastSignal : lastSignal) | nextSignal;
         }
     }

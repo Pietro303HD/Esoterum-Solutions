@@ -4,7 +4,7 @@ import arc.*;
 import arc.graphics.g2d.*;
 import esoterum.content.*;
 
-public class BinaryGate extends BinaryAcceptor {
+public class BinaryGate extends BinaryAcceptor{
     /** left, back, right */
     public boolean[] inputs = {true, false, true};
     public String variant = null;
@@ -23,7 +23,7 @@ public class BinaryGate extends BinaryAcceptor {
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
             region,
             topRegion,
@@ -36,7 +36,7 @@ public class BinaryGate extends BinaryAcceptor {
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
         variantRegion = Core.atlas.find("eso-variant-" + variant);
         for(int i = 0; i < 3; i++){
@@ -44,17 +44,17 @@ public class BinaryGate extends BinaryAcceptor {
         }
     }
 
-    public class BinaryGateBuild extends BinaryAcceptorBuild {
+    public class BinaryGateBuild extends BinaryAcceptorBuild{
         public boolean[] results = new boolean[]{false, false, false};
 
         @Override
-        public void updateTile() {
+        public void updateTile(){
             lastSignal = nextSignal;
             nextSignal = signal();
         }
 
         @Override
-        public void drawSelect() {
+        public void drawSelect(){
             super.drawSelect();
             if(variant != null){
                 Draw.rect(variantRegion, x, y);
@@ -83,7 +83,7 @@ public class BinaryGate extends BinaryAcceptor {
         }
 
         @Override
-        public boolean signalFront() {
+        public boolean signalFront(){
             return lastSignal;
         }
     }

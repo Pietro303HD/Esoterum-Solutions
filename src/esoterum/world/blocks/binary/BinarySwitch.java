@@ -4,7 +4,7 @@ import arc.graphics.g2d.*;
 import arc.util.io.*;
 import esoterum.content.*;
 
-public class BinarySwitch extends BinaryBlock {
+public class BinarySwitch extends BinaryBlock{
     public BinarySwitch(String name){
         super(name);
         configurable = true;
@@ -34,7 +34,7 @@ public class BinarySwitch extends BinaryBlock {
         }
 
         @Override
-        public void draw() {
+        public void draw(){
             Draw.rect(region, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
             if(drawConnection) for (int i = 0; i < 4; i++) {

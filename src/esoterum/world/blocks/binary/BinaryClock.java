@@ -12,7 +12,7 @@ import esoterum.util.*;
 import mindustry.ui.*;
 
 //BinaryCock
-public class BinaryClock extends BinarySwitch {
+public class BinaryClock extends BinarySwitch{
     public BinaryClock(String name){
         super(name);
 
@@ -28,7 +28,7 @@ public class BinaryClock extends BinarySwitch {
         });
     }
 
-    public class BinaryClockBuild extends BinarySwitchBuild {
+    public class BinaryClockBuild extends BinarySwitchBuild{
         public int intervalSec = 1, intervalTick;
 
         @Override
@@ -77,7 +77,7 @@ public class BinaryClock extends BinarySwitch {
         }
 
         @Override
-        public void buildConfiguration(Table table) {
+        public void buildConfiguration(Table table){
             table.setBackground(Styles.black5);
             table.table(a -> {
                 a.table(t -> {
@@ -136,7 +136,7 @@ public class BinaryClock extends BinarySwitch {
         }
         
         @Override
-        public void write(Writes write) {
+        public void write(Writes write){
             super.write(write);
 
             write.bool(lastSignal);
@@ -145,7 +145,7 @@ public class BinaryClock extends BinarySwitch {
         }
 
         @Override
-        public void read(Reads read, byte revision) {
+        public void read(Reads read, byte revision){
             super.read(read, revision);
 
             if(revision == 1){
@@ -164,7 +164,7 @@ public class BinaryClock extends BinarySwitch {
         }
 
         @Override
-        public byte version() {
+        public byte version(){
             return 2;
         }
     }

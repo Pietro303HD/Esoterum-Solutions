@@ -16,7 +16,7 @@ import esoterum.util.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 
-public class NoteBlock extends BinaryAcceptor {
+public class NoteBlock extends BinaryAcceptor{
     public NoteBlock(String name){
         super(name);
         configurable = true;
@@ -31,14 +31,14 @@ public class NoteBlock extends BinaryAcceptor {
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
 
         connectionRegion = Core.atlas.find("eso-not-connections");
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
                 region,
                 topRegion,
@@ -46,7 +46,7 @@ public class NoteBlock extends BinaryAcceptor {
         };
     }
 
-    public class NoteBlockBuild extends BinaryAcceptorBuild {
+    public class NoteBlockBuild extends BinaryAcceptorBuild{
         public Sound[][] noteSamples = new Sound[][]{EsoSounds.bells};
 
         public int note = 0;
@@ -65,7 +65,7 @@ public class NoteBlock extends BinaryAcceptor {
         public boolean prev;
 
         @Override
-        public void updateTile() {
+        public void updateTile(){
             prev = lastSignal;
             lastSignal = nextSignal | getSignal(nb[0]);
             nextSignal = signal();
@@ -77,7 +77,7 @@ public class NoteBlock extends BinaryAcceptor {
         }
 
         @Override
-        public void displayBars(Table table) {
+        public void displayBars(Table table){
             super.displayBars(table);
             table.row();
             table.table(e -> {
@@ -93,7 +93,7 @@ public class NoteBlock extends BinaryAcceptor {
         }
 
         @Override
-        public void buildConfiguration(Table table) {
+        public void buildConfiguration(Table table){
             table.setBackground(Styles.black5);
             table.table(s -> {
                 s.add("Note:").left();
@@ -160,12 +160,12 @@ public class NoteBlock extends BinaryAcceptor {
         }
 
         @Override
-        public Object config() {
+        public Object config(){
             return new IntSeq(new int[]{note, volume, noteOctave, noteSample});
         }
 
         @Override
-        public void drawSelect() {
+        public void drawSelect(){
             super.drawSelect();
             if(nb[3] != null)Drawf.arrow(x, y, nb[3].x, nb[3].y, 2f, 2f, Pal.accent);
             if(nb[0] != null)Drawf.arrow(nb[0].x, nb[0].y, x, y, 2f, 2f, Pal.accent);
@@ -181,12 +181,12 @@ public class NoteBlock extends BinaryAcceptor {
         }
 
         @Override
-        public byte version() {
+        public byte version(){
             return 1;
         }
 
         @Override
-        public void read(Reads read, byte revision) {
+        public void read(Reads read, byte revision){
             super.read(read, revision);
 
             if(revision == 1){
@@ -198,7 +198,7 @@ public class NoteBlock extends BinaryAcceptor {
         }
 
         @Override
-        public void write(Writes write) {
+        public void write(Writes write){
             super.write(write);
 
             write.i(note);

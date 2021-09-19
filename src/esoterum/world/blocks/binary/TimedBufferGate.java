@@ -37,7 +37,7 @@ public class TimedBufferGate extends BinaryAcceptor{
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
 
         connectionRegion = Core.atlas.find("eso-not-connections");
@@ -45,7 +45,7 @@ public class TimedBufferGate extends BinaryAcceptor{
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
             region,
             topRegion,
@@ -53,7 +53,7 @@ public class TimedBufferGate extends BinaryAcceptor{
         };
     }
 
-    public class DelayGateBuild extends BinaryAcceptorBuild {
+    public class DelayGateBuild extends BinaryAcceptorBuild{
         public float delayTimer = 0f;
         public int delaySec = 1, delayTick;
 
@@ -80,12 +80,12 @@ public class TimedBufferGate extends BinaryAcceptor{
         }
 
         @Override
-        public boolean signal() {
+        public boolean signal(){
             return getSignal(nb[0]);
         }
 
         @Override
-        public boolean signalFront() {
+        public boolean signalFront(){
             return lastSignal;
         }
 
@@ -110,7 +110,7 @@ public class TimedBufferGate extends BinaryAcceptor{
         }
 
         @Override
-        public void buildConfiguration(Table table) {
+        public void buildConfiguration(Table table){
             table.setBackground(Styles.black5);
             table.table(a -> {
                 a.table(t -> {

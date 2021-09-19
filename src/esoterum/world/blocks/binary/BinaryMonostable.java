@@ -20,7 +20,7 @@ public class BinaryMonostable extends TimedBufferGate{
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
             region,
             topRegion,

@@ -3,7 +3,7 @@ package esoterum.interfaces;
 import esoterum.world.blocks.binary.*;
 import mindustry.gen.*;
 
-public interface Binaryc {
+public interface Binaryc{
     default boolean signal(){
         return false;
     }

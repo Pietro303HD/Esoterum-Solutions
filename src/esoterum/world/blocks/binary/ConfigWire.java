@@ -10,6 +10,8 @@ import mindustry.gen.*;
 import mindustry.ui.*;
 
 public class ConfigWire extends BinaryAcceptor{
+    protected String[] letters = {"L", "B", "R"};
+
     public ConfigWire(String name){
         super(name);
         configurable = true;
@@ -83,7 +85,6 @@ public class ConfigWire extends BinaryAcceptor{
         public void buildConfiguration(Table table){
             super.buildConfiguration(table);
             table.setBackground(Styles.black5);
-            String[] letters = {"L", "B", "R"};
             for(int i = 0; i < 3; i++){
                 int ii = i;
                 TextButton button = table.button(letters[i], () -> configure(ii)).size(40).get();

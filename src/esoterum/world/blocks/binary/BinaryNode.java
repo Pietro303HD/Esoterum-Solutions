@@ -38,13 +38,13 @@ public class BinaryNode extends BinaryAcceptor{
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
         connectionRegion = Core.atlas.find("eso-full-connections");
     }
 
     @Override
-    public void drawPlace(int x, int y, int rotation, boolean valid) {
+    public void drawPlace(int x, int y, int rotation, boolean valid){
         super.drawPlace(x, y, rotation, valid);
         Drawf.dashCircle(x * 8f, y * 8f, range, Color.white);
     }

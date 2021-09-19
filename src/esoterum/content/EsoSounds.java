@@ -7,8 +7,8 @@ import arc.audio.*;
 import mindustry.*;
 
 // thanks sh1p
-public class EsoSounds {
-    protected static Sound loadSound(String soundName) {
+public class EsoSounds{
+    protected static Sound loadSound(String soundName){
         String name = "sounds/" + soundName;
         String path = Vars.tree.get(name + ".ogg").exists() ? name + ".ogg" : name + ".mp3";
 
@@ -23,7 +23,7 @@ public class EsoSounds {
     public static Sound beep = new Sound();
     public static Sound[] bells = new Sound[]{null, null, null, null, null};
 
-    public static void load() {
+    public static void load(){
         if(Vars.headless) return;
 
         beep = loadSound("beep");

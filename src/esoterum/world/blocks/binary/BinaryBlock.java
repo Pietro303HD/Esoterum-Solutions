@@ -13,7 +13,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 
-public class BinaryBlock extends Block {
+public class BinaryBlock extends Block{
     public TextureRegion connectionRegion;
     public TextureRegion topRegion;
     public boolean drawConnection;
@@ -43,7 +43,7 @@ public class BinaryBlock extends Block {
     }
 
     @Override
-    protected TextureRegion[] icons() {
+    protected TextureRegion[] icons(){
         return new TextureRegion[]{
             region,
             topRegion,
@@ -52,12 +52,12 @@ public class BinaryBlock extends Block {
     }
 
     @Override
-    public boolean canReplace(Block other) {
+    public boolean canReplace(Block other){
         if(other.alwaysReplace) return true;
         return (other != this || rotate) && other instanceof BinaryBlock && size == other.size;
     }
 
-    public class BinaryBuild extends Building implements Binaryc {
+    public class BinaryBuild extends Building implements Binaryc{
         public boolean lastSignal;
         public boolean nextSignal;
         // used for drawing
@@ -68,7 +68,7 @@ public class BinaryBlock extends Block {
         public void draw(){
             Draw.rect(region, x, y);
             Draw.color(EsoVars.connectionOffColor, EsoVars.connectionColor, lastSignal ? 1f : 0f);
-            if(drawConnection) for (BinaryBuild b : nb) {
+            if(drawConnection) for (BinaryBuild b : nb){
                 if(b == null || b.team != team) continue;
                 if(!b.block.rotate || (b.front() == this || b.back() == this) || front() == b){
                     if(!(b.back() == this && front() != b) || !b.block.rotate){
@@ -92,7 +92,7 @@ public class BinaryBlock extends Block {
         }
 
         @Override
-        public void onProximityUpdate() {
+        public void onProximityUpdate(){
             super.onProximityUpdate();
             nb[0] = validateNearby(back());
             nb[1] = validateNearby(left());
@@ -101,7 +101,7 @@ public class BinaryBlock extends Block {
         }
 
         @Override
-        public void displayBars(Table table) {
+        public void displayBars(Table table){
             super.displayBars(table);
             table.table(e -> {
                 Runnable rebuild = () -> {
@@ -133,7 +133,7 @@ public class BinaryBlock extends Block {
         }
 
         @Override
-        public double sense(LAccess sensor) {
+        public double sense(LAccess sensor){
             if(sensor == LAccess.enabled) return signal() ? 1 : 0;
             return super.sense(sensor);
         }
